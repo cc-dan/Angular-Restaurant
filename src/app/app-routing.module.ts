@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router'
 
-const routes: Routes = [];
+// COMPONENTES
+import { LoginComponent } from './login/login.component'
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+// ROUTES
+const appRoutes = [
+    { path: 'login', component: LoginComponent }
+]
+
+export default RouterModule.forRoot(appRoutes) // Crea un módulo con las rutas
