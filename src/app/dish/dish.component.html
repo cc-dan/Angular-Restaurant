@@ -1,0 +1,24 @@
+<div class="card m-2" style="width: 18rem;">
+  <img class="card-img-top" [src]="data.image" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{data.title}}</h5>
+    <p class="card-text">${{data.pricePerServing}}<br>Health Score: {{data.healthScore}}</p>
+    <a href="#" class="btn btn-primary me-1" data-bs-toggle="modal" [attr.data-bs-target]="'#modal-'+data.id">See details</a> <!--id único para cada modal-->
+    <a href="#" class="btn btn-secondary" (click)="emitDish(data)">{{buttonText}}</a>
+  </div>
+</div>
+
+<!-- MODAL: Detalles del plato -->
+<div class="modal fade bd-example-modal-lg" id="modal-{{data.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content p-3">
+        <h5>{{data.title}}</h5>
+        <ul>
+          <li>Price: ${{data.pricePerServing}}</li>
+          <li>Health Score: {{data.healthScore}}</li>
+          <li>Cooking Time: {{data.readyInMinutes}} minutes</li>
+        </ul>
+        <div [innerHTML]="data.summary"></div>
+      </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import Swal from 'sweetalert2'
 import LoginService from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +13,15 @@ import LoginService from '../services/login.service';
 export class LoginComponent {
   emailFormInvalid?:Boolean
   passwordFormInvalid?:Boolean
-  sendRequestPossible:Boolean // Deshabilitar botón de login
+  sendRequestPossible:Boolean
 
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
+    email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required)
   })
 
-  constructor(public loginService:LoginService) { // Inyectamos el servicio de login --> Nos podemos referir a él mediante "this"
-    this.sendRequestPossible = true 
+  constructor(public loginService:LoginService, public router:Router) { // Inyectamos el servicio de login --> Nos podemos referir a él mediante "this"
+    this.sendRequestPossible = true
   } 
 
   validateLoginForm():Boolean|any {
@@ -41,12 +42,17 @@ export class LoginComponent {
       
       // Petición POST
       this.loginService.validateLogin(formUserData).subscribe(
-        data => this.loginService.saveToken(data),                                  // Almacenar token
-        err => { console.log("ERROR: ", err); Swal.fire("Error de verificación") }, // Manejo de errores
-        () => console.log("Request verificada en los servidores de Alkemy")         // Finalización exitosa
-      ).add(
-        () => this.sendRequestPossible = true                                       // Función adicional ejecutada al final --> Cambiar el estado del botón login
+        (data) => { 
+          console.log("Request verificada en los servidores de Alkemy") 
+          this.loginService.saveToken(data)
+          this.router.navigateByUrl('')
+        },                                  
+        (err) => { 
+          console.log("ERROR: ", err)
+          Swal.fire("Error de verificación")
+          this.sendRequestPossible = true
+        }
       ) 
-    } else { console.log("Los campos de email y contraseña no son válidos") }
+    }
   }
 }
