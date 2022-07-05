@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import Swal from 'sweetalert2'
 import LoginService from '../services/login.service';
 import { Router } from '@angular/router';
+import { LoginGuard } from '../login.guard';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
     password: new FormControl('', Validators.required)
   })
 
-  constructor(public loginService:LoginService, public router:Router) { // Inyectamos el servicio de login --> Nos podemos referir a él mediante "this"
+  constructor(public loginService:LoginService, public router:Router, public loginGuard:LoginGuard) { // Inyectamos el servicio de login --> Nos podemos referir a él mediante "this"
     this.sendRequestPossible = true
   } 
 
@@ -37,7 +38,7 @@ export class LoginComponent {
         email:this.loginForm.get('email')?.value, 
         password:this.loginForm.get('password')?.value 
       }
-
+      
       this.sendRequestPossible = false
       
       // Petición POST
