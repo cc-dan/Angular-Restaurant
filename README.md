@@ -15,7 +15,8 @@ Menú de platos, búsqueda de platos, funcionalidades para agregar platos al men
     };
 
 - Instalar las dependencias
-- Ejecutar el script `start` para comenzar el servidor en `http://localhost:4200`
+- Ejecutar el script `start` para comenzar el servidor en `http://localhost:4200/`
+- Deberás validarte en la pantalla de login para acceder al home
 
 ## Dependencias
 - Angular 14
