@@ -1,27 +1,22 @@
 # Restaurant
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
+Menú de platos, búsqueda de platos, funcionalidades para agregar platos al menú y calcular promedios a partir de sus características.
 
-## Development server
+## Ejecutando la aplicación
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Se debera proporcional una API KEY para SpoonacularAPI en `src/environments/environment.ts`
+Ejemplo environment.ts:
+    export const environment = {
+        production: false,
+        API_URI: "https://api.spoonacular.com/recipes",
+        API_KEY: "api_key_here",
+        MAX_SEARCH_RESULTS: 6
+    };
 
-## Code scaffolding
+- `npm i` para instalar las dependencias
+- `npm run start` para ejecutar el servidor en `http://localhost:4200`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Dependencias
+- Angular 14
+- Bootstrap
+- Sweetalert2
